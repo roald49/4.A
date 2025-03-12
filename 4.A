@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.A's Sociale Medie - Futuristisk Design</title>
+  <style>
+    /* Farvevariabler */
+    :root {
+      --bg-color: #000;               /* Sort baggrund */
+      --neon-turquoise: #40E0D0;        /* Neon turkis */
+      --neon-blue: #0D47A1;             /* Neon blå */
+      --text-color: #e0e0e0;            /* Lys tekst */
+      --card-bg: #1a1a1a;              /* Kortbaggrund */
+      --input-bg: #333;                /* Inputfelter */
+    }
+    
+    /* Global reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    
+    /* Header med gradient og neon-effekt */
+    header {
+      background: linear-gradient(45deg, var(--neon-turquoise), var(--neon-blue));
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 3px solid var(--neon-turquoise);
+    }
+    
+    header h1 {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px var(--neon-turquoise);
+      margin-bottom: 0.5rem;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      text-shadow: 0 0 5px var(--neon-blue);
+    }
+    
+    /* Futuristisk navigation */
+    nav {
+      background-color: var(--bg-color);
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      margin: 1rem 0;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    
+    nav ul li a {
+      color: var(--text-color);
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      position: relative;
+      transition: 0.3s;
+    }
+    
+    /* Understregningseffekt ved hover */
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon-turquoise);
+      transition: width 0.3s;
+    }
+    
+    nav ul li a:hover {
+      transform: translateY(-3px);
+      color: var(--neon-turquoise);
+    }
+    
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    
+    main {
+      padding: 1rem 0;
+    }
+    
+    section {
+      margin-bottom: 2rem;
+    }
+    
+    h2, h3, h4 {
+      margin-bottom: 1rem;
+      text-shadow: 0 0 5px var(--neon-turquoise);
+    }
+    
+    /* Opslagskort med glødende effekt */
+    .post {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .post:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px rgba(64, 224, 208, 0.8);
+    }
+    
+    .post h2 {
+      color: var(--neon-turquoise);
+    }
+    
+    .post p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .post img, .post video {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
+    
+    /* Formularer i futuristisk stil */
+    form {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(64, 224, 208, 0.5);
+      margin-bottom: 1rem;
+    }
+    
+    form input[type="text"],
+    form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+    
+    form input[type="file"] {
+      margin-bottom: 1rem;
+    }
+    
+    form button {
+      background: var(--neon-turquoise);
+      color: var(--bg-color);
+      border: none;
+      padding: 0.8rem 1.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    
+    form button:hover {
+      background: var(--neon-blue);
+    }
+    
+    /* Upload forhåndsvisning */
+    #upload-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    #upload-preview img,
+    #upload-preview video {
+      max-width: 200px;
+      border: 1px solid #444;
+      border-radius: 4px;
+    }
+    
+    /* Bøger sektion */
+    .book {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border: 1px solid var(--neon-turquoise);
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    
+    .book h3 {
+      color: var(--neon-turquoise);
+    }
+    
+    .book-page {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px dashed #444;
+      border-radius: 4px;
+    }
+    
+    .book-page button {
+      background: var(--neon-turquoise);
+      border: none;
+      color: var(--bg-color);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: background 0.3s;
+    }
+    
+    .book-page button:hover {
+      background: var(--neon-blue);
+    }
+    
+    #book-editor input[type="color"] {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    
+    #book-title-edit input[type="text"] {
+      padding: 0.3rem;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+    
+    #book-title-edit button {
+      background: var(--neon-turquoise);
+      border: none;
+      color: var(--bg-color);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      margin-left: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    #book-title-edit button:hover {
+      background: var(--neon-blue);
+    }
+    
+    footer {
+      background-color: var(--bg-color);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #444;
+      margin-top: 2rem;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li a {
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>4.A's Sociale Medie</h1>
+      <p>Fremtidsunivers med sort baggrund, turkis og blå accenter</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="#" onclick="goToSection('feed')">Hjem</a></li>
+        <li><a href="#" onclick="goToSection('post')">Opret Opslag</a></li>
+        <li><a href="#" onclick="goToSection('upload')">Upload</a></li>
+        <li><a href="#" onclick="goToSection('books')">Bøger</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <!-- Feed-sektion -->
+      <section id="feed-section">
+        <h2>Seneste Opslag</h2>
+        <div id="posts-container">
+          <p>Ingen opslag endnu. Vær den første til at poste!</p>
+        </div>
+      </section>
+
+      <!-- Opret Opslag sektion -->
+      <section id="post-section" style="display: none;">
+        <h2>Opret et Nyt Opslag</h2>
+        <form id="post-form">
+          <textarea id="post-text" placeholder="Skriv dit opslag her..." rows="4"></textarea>
+          <input type="file" id="post-image" accept="image/*">
+          <input type="file" id="post-video" accept="video/*">
+          <button type="button" onclick="createPost()">Opret Opslag</button>
+        </form>
+      </section>
+
+      <!-- Upload sektion -->
+      <section id="upload-section" style="display: none;">
+        <h2>Upload Billeder/Vidéoer</h2>
+        <form id="upload-form">
+          <input type="file" id="upload-file" accept="image/*, video/*" multiple>
+          <button type="button" onclick="handleUploads()">Upload</button>
+        </form>
+        <div id="upload-preview"></div>
+      </section>
+
+      <!-- Bøger sektion -->
+      <section id="books-section" style="display: none;">
+        <h2>Dine Bøger</h2>
+        <div id="books-container">
+          <p>Ingen bøger endnu. Opret en ny bog for at komme i gang.</p>
+        </div>
+        <hr>
+        <h3>Opret Ny Bog</h3>
+        <form id="book-form">
+          <input type="text" id="book-title" placeholder="Bogtitel">
+          <button type="button" onclick="createBook()">Opret Bog</button>
+        </form>
+        <div id="book-editor" style="display: none; margin-top: 20px;">
+          <h3 id="current-book-title"></h3>
+          <div id="book-title-edit">
+            <input type="text" id="edit-book-title" placeholder="Rediger bogtitel">
+            <button type="button" onclick="saveBookTitle()">Gem Titel</button>
+          </div>
+          <textarea id="page-content" placeholder="Skriv indhold til siden..." rows="4"></textarea>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <label for="page-bg">Baggrundsfarve:</label>
+            <input type="color" id="page-bg" value="#40E0D0">
+            <label for="page-text-color">Tekstfarve:</label>
+            <input type="color" id="page-text-color" value="#ffffff">
+          </div>
+          <button type="button" onclick="addPageToBook()">Tilføj Side</button>
+          <div id="edit-page-section" style="display: none; border: 1px dashed #444; padding: 0.5rem; margin: 1rem 0;">
+            <h4>Rediger Side</h4>
+            <textarea id="edit-page-content" rows="4" placeholder="Rediger sideindhold..."></textarea>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <label for="edit-page-bg">Baggrundsfarve:</label>
+              <input type="color" id="edit-page-bg" value="#40E0D0">
+              <label for="edit-page-text">Tekstfarve:</label>
+              <input type="color" id="edit-page-text" value="#ffffff">
+            </div>
+            <button type="button" onclick="saveEditedPage()">Gem Ændringer</button>
+            <button type="button" onclick="cancelEditPage()">Afbryd</button>
+          </div>
+          <div id="current-book-pages"></div>
+          <button type="button" onclick="finishBook()">Færdiggør Bog</button>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Hjerting Skole Aura - 4.A's Sociale Medie</p>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      showSection("feed-section");
+      renderPosts();
+      renderBooks();
+    });
+    
+    function showSection(sectionId) {
+      const sections = ["feed-section", "post-section", "upload-section", "books-section"];
+      sections.forEach(id => {
+        document.getElementById(id).style.display = (id === sectionId) ? "block" : "none";
+      });
+    }
+    
+    function goToSection(sectionName) {
+      switch(sectionName) {
+        case "feed":
+          showSection("feed-section");
+          break;
+        case "post":
+          showSection("post-section");
+          break;
+        case "upload":
+          showSection("upload-section");
+          break;
+        case "books":
+          showSection("books-section");
+          break;
+      }
+    }
+    
+    let posts = [];
+    let books = [];
+    let currentBook = null;
+    let currentEditingPageId = null;
+    
+    function createPost() {
+      const text = document.getElementById("post-text").value;
+      const imageInput = document.getElementById("post-image");
+      const videoInput = document.getElementById("post-video");
+    
+      function postAndRender(imageData, videoData) {
+        const post = { id: Date.now(), text: text, image: imageData, video: videoData, timestamp: new Date().toLocaleString() };
+        posts.unshift(post);
+        renderPosts();
+        document.getElementById("post-form").reset();
+      }
+    
+      if (imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imageData = e.target.result;
+          if (videoInput.files && videoInput.files[0]) {
+            const videoURL = URL.createObjectURL(videoInput.files[0]);
+            postAndRender(imageData, videoURL);
+          } else {
+            postAndRender(imageData, null);
+          }
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        if (videoInput.files && videoInput.files[0]) {
+          const videoURL = URL.createObjectURL(videoInput.files[0]);
+          postAndRender(null, videoURL);
+        } else {
+          postAndRender(null, null);
+        }
+      }
+    }
+    
+    function renderPosts() {
+      const container = document.getElementById("posts-container");
+      container.innerHTML = "";
+      if (posts.length === 0) {
+        container.innerHTML = "<p>Ingen opslag endnu. Vær den første til at poste!</p>";
+      }
+      posts.forEach(post => {
+        const postElem = document.createElement("div");
+        postElem.className = "post";
+        postElem.innerHTML = `<h2>Opslag - ${post.timestamp}</h2><p>${post.text}</p>`;
+        if (post.image) {
+          const img = document.createElement("img");
+          img.src = post.image;
+          postElem.appendChild(img);
+        }
+        if (post.video) {
+          const video = document.createElement("video");
+          video.src = post.video;
+          video.controls = true;
+          postElem.appendChild(video);
+        }
+        container.appendChild(postElem);
+      });
+    }
+    
+    function handleUploads() {
+      const filesInput = document.getElementById("upload-file");
+      const previewContainer = document.getElementById("upload-preview");
+      previewContainer.innerHTML = "";
+      const files = filesInput.files;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileType = file.type;
+        if (fileType.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            previewContainer.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        } else if (fileType.startsWith("video/")) {
+          const videoURL = URL.createObjectURL(file);
+          const video = document.createElement("video");
+          video.src = videoURL;
+          video.controls = true;
+          previewContainer.appendChild(video);
+        }
+      }
+      filesInput.value = "";
+    }
+    
+    function createBook() {
+      const bookTitle = document.getElementById("book-title").value;
+      if (bookTitle.trim() === "") {
+        alert("Indtast en bogtitel!");
+        return;
+      }
+      const newBook = { id: Date.now(), title: bookTitle, pages: [] };
+      books.push(newBook);
+      currentBook = newBook;
+      renderBooks();
+      document.getElementById("book-editor").style.display = "block";
+      document.getElementById("current-book-title").innerText = "Rediger: " + currentBook.title;
+      document.getElementById("book-form").reset();
+    }
+    
+    function addPageToBook() {
+      if (!currentBook) {
+        alert("Vælg eller opret en bog først!");
+        return;
+      }
+      const pageContent = document.getElementById("page-content").value;
+      if (pageContent.trim() === "") {
+        alert("Skriv noget indhold til siden!");
+        return;
+      }
+      const bgColor = document.getElementById("page-bg").value;
+      const textColor = document.getElementById("page-text-color").value;
+      const page = { id: Date.now(), content: pageContent, timestamp: new Date().toLocaleString(), bg: bgColor, textColor: textColor };
+      currentBook.pages.push(page);
+      renderCurrentBookPages();
+      document.getElementById("page-content").value = "";
+    }
+    
+    function renderCurrentBookPages() {
+      const container = document.getElementById("current-book-pages");
+      container.innerHTML = "";
+      currentBook.pages.forEach(page => {
+        const pageElem = document.createElement("div");
+        pageElem.className = "book-page";
+        pageElem.style.backgroundColor = page.bg;
+        pageElem.style.color = page.textColor;
+        pageElem.innerHTML = `<strong>Side oprettet: ${page.timestamp}</strong><p>${page.content}</p>`;
+        const editBtn = document.createElement("button");
+        editBtn.innerText = "Rediger Side";
+        editBtn.onclick = function() { editPage(page.id); };
+        pageElem.appendChild(editBtn);
+        container.appendChild(pageElem);
+      });
+    }
+    
+    function editPage(pageId) {
+      let pageToEdit = currentBook.pages.find(p => p.id === pageId);
+      if (!pageToEdit) return;
+      currentEditingPageId = pageId;
+      document.getElementById("edit-page-content").value = pageToEdit.content;
+      document.getElementById("edit-page-bg").value = pageToEdit.bg;
+      document.getElementById("edit-page-text").value = pageToEdit.textColor;
+      document.getElementById("edit-page-section").style.display = "block";
+    }
+    
+    function saveEditedPage() {
+      let page = currentBook.pages.find(p => p.id === currentEditingPageId);
+      if (!page) return;
+      page.content = document.getElementById("edit-page-content").value;
+      page.bg = document.getElementById("edit-page-bg").value;
+      page.textColor = document.getElementById("edit-page-text").value;
+      renderCurrentBookPages();
+      cancelEditPage();
+    }
+    
+    function cancelEditPage() {
+      document.getElementById("edit-page-section").style.display = "none";
+      currentEditingPageId = null;
+    }
+    
+    function saveBookTitle() {
+      let newTitle = document.getElementById("edit-book-title").value;
+      if (newTitle.trim() === "") {
+        alert("Indtast en gyldig titel!");
+        return;
+      }
+      currentBook.title = newTitle;
+      document.getElementById("current-book-title").innerText = "Rediger: " + currentBook.title;
+      document.getElementById("edit-book-title").value = "";
+      renderBooks();
+    }
+    
+    function finishBook() {
+      currentBook = null;
+      document.getElementById("book-editor").style.display = "none";
+      document.getElementById("current-book-pages").innerHTML = "";
+      alert("Bogen er gemt!");
+    }
+    
+    function renderBooks() {
+      const container = document.getElementById("books-container");
+      container.innerHTML = "";
+      if (books.length === 0) {
+        container.innerHTML = "<p>Ingen bøger endnu. Opret en ny bog for at komme i gang!</p>";
+      }
+      books.forEach(book => {
+        const bookElem = document.createElement("div");
+        bookElem.className = "book";
+        let pagesHtml = "";
+        book.pages.forEach(page => {
+          pagesHtml += `<li>${page.content.substring(0, 30)}... (${page.timestamp})</li>`;
+        });
+        bookElem.innerHTML = `<h3>${book.title}</h3><p>${book.pages.length} side(r)</p><ul>${pagesHtml}</ul>`;
+        const editBtn = document.createElement("button");
+        editBtn.innerText = "Rediger Bog";
+        editBtn.onclick = function() {
+          currentBook = book;
+          document.getElementById("current-book-title").innerText = "Rediger: " + book.title;
+          document.getElementById("book-editor").style.display = "block";
+          renderCurrentBookPages();
+        };
+        bookElem.appendChild(editBtn);
+        container.appendChild(bookElem);
+      });
+    }
+  </script>
+</body>
+</html>
